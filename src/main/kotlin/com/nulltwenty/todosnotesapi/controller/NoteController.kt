@@ -15,7 +15,7 @@ class NoteController {
     @GetMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun getNotes(): List<Note> = service.getNotes()
+    fun getNotes() = service.getNotes()
 
     @PutMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE],

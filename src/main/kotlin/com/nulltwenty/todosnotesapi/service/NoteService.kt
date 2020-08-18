@@ -1,29 +1,17 @@
 package com.nulltwenty.todosnotesapi.service
 
 import com.nulltwenty.todosnotesapi.data.Note
+import com.nulltwenty.todosnotesapi.repository.NoteRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service("Note service")
 class NoteService {
-    fun getNotes(): List<Note> = listOf(
-        Note(
-            id = UUID.randomUUID().toString(),
-            title = "My first note",
-            message = "Message for 1st note"
-        ),
-        Note(
-            id = UUID.randomUUID().toString(),
-            title = "My second note",
-            message = "Message for 2nd note"
-        )
-    )
+    @Autowired
+    lateinit var repository: NoteRepository
 
-    fun insertNote(note: Note): Note {
-        note.id = UUID.randomUUID().toString()
-        return note
-    }
-
-    fun deleteNote(id: String): Boolean = false
-    fun updateNote(note: Note): Boolean = true
+    fun getNotes(): Iterable<Note> = repository.findAll()
+    fun insertNote(note: Note) = repository.save(note)
+    fun deleteNote(id: String) = repository.deleteById(id)
+    fun updateNote(note: Note) = repository.save(note)
 }

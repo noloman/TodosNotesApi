@@ -13,24 +13,24 @@ class TodoController {
     lateinit var service: TodoService
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getTodos(): List<Todo> = service.getTodos()
+    fun getTodos() = service.getTodos()
 
     @PutMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun insertTodo(@RequestBody todo: Todo): Todo = service.insertTodo(todo)
+    fun insertTodo(@RequestBody todo: Todo) = service.insertTodo(todo)
 
     @DeleteMapping(
         value = ["/delete/{id}"],
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun deleteTodo(@PathVariable(name = "id") id: String): Boolean = service.deleteTodo(id)
+    fun deleteTodo(@PathVariable(name = "id") id: String) = service.deleteTodo(id)
 
     @PostMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateTodo(@RequestBody todo: Todo): Todo = service.updateTodo(todo)
+    fun updateTodo(@RequestBody todo: Todo) = service.updateTodo(todo)
 }
